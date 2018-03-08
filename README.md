@@ -20,8 +20,10 @@ It is possible to create two kinds of list :
    - First one, define the ACL,
    - the second one, apply it on an interface.
 
+
 At the definition, give a number to your ACL. Standart and Extented have different number ranges.
-|    |Standart ACLs|Extended ACLs|
+
+|   |Standart ACLs|Extended ACLs|
 |----|-------------|-------------|
 |access-list-number|0 to 99 & 1300 to 1999|100 to 199 & 2000 to 2699|
 
@@ -96,11 +98,13 @@ then
 | Kathy's PC| 192.168.90.38|    172.16.90.2|
 
 The Router has three interfaces : E0, S0 and E1.
+
 |Interfaces| Networks|
 |---|---|
 |E0|172.16.70.0|
 |S0|210.30.28.0|
 |E1|192.168.90.0|
+
 > **Tips** : Make a schema to illustrate
 
 1. Write a standard access list to block Melvin’s PC from sending information to Kathy’s PC ; but will allow all other traffic.
@@ -138,7 +142,7 @@ The Router has two interfaces : FA0 & F01.
 |FA1|192.168.90.0|
 
 * Write an extended access list to block the 172.16.70.0 network from receiving information from Mike’s computer at 192.168.90.36. Block the lower half of the ip addresses from 192.168.90.0 network from reaching Gail’s computer at 172.16.70.32. Permit all other traffic.
-* 
+
 ->Destinataire est à la fin de l'extended ACL
 ```
 Router(config)# access-list 111 deny ip 192.168.90.36 0.0.0.0 172.16.70.0 0.0.0.255
