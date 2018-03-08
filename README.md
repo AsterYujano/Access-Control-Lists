@@ -1,6 +1,7 @@
 # Access Control lists - My straightforward guide
 Have you always been searching for a simple explanation of the Access Control Lists ?
 >~~No, I don't care about it.~~
+
 > Yes, Of course!
 
 ## Getting Started
@@ -161,7 +162,6 @@ Router(config-if)# ip access-group 111 in
 | Router A| 192.16.20.5|   x|
 | Router B| 192.18.50.10|    x|
 
-> Cody bly etc
 
 The Router A has two interfaces : E0 & S0.
 The Router B has two interfaces : S1 & E1.
@@ -192,7 +192,6 @@ RouterB(config-if)# ip access-group 112 in
 | Router A| 192.168.207.25|   x|
 | Router B| 210.128.50.10|    x|
 
-> Cody bly etc
 
 The Router A has two interfaces : E0 & S0.
 The Router B has two interfaces : S1 & E1.
