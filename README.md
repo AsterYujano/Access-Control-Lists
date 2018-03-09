@@ -223,17 +223,21 @@ Write an access list to permit Denise’s and Bob’s computers to telnet into R
 
 
 The Router A has three interfaces : E0, E1 & S0.
+
 |Interfaces| IP|
 |---|---|
 |E0| 172.20.70.1|
 |E1| 10.250.4.0|
 |S0|x|
+
 The Router B has three interfaces : E0, E1 &S1
+
 |Interfaces| IP|
 |---|---|
 |E0| 172.16.16.0|
 |E1| 192.168.33.1|
 |S1|x|
+
 S0 and S1 are linked together.
 
 ```
