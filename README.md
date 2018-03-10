@@ -144,6 +144,7 @@ Use the E0 to regulate from others interfaces.
 | Jedi's PC| 192.168.90.38|    172.16.90.2|
 
 The Router has two interfaces : FA0 & F01.
+
 |Interfaces| Networks|
 |---|---|
 |FA0|172.16.70.0|
@@ -162,6 +163,7 @@ Router(config-if)# ip access-group 111 in
 ```
 
 ### Problem 4
+
 |         Names  |    IPs   |    Gateways|
 |-------------------|---------|--|
 |Cindy's PC| 172.16.70.35  |  172.16.70.1|
