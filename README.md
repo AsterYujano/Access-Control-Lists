@@ -37,9 +37,9 @@ As a mask does, Wildcards are usefull to identify a network.
 
 
 ### Standard list
+
 ```
-access-list [access-list-number] [permit/deny]
-[host/source source-wildcard|any]
+access-list [access-list-number] [permit/deny] [host/source source-wildcard|any]
 ```
 
 The three examples below are exactly the same.
@@ -56,14 +56,19 @@ access-list 28 deny host 192.168.90.36
 **There may be multiple ways to write an ACL.**
 
 ### Extended list
-IP concerns all trafics.
+
+```
+access-list [access-list-number] [permit/deny] [protocol] [host/source source-wildcard|any] [destination destination-wildcard|any]
+```
+
+In an extended list, provide the source and the destination. The destination is the last one to be written.
+Put IP in the protocal place acts as list all the different protocols.
 
 
 
 ## Apply
 
-interface <interface>
-ip access-group number {in|out}
+An ACL is apply on a router interface, and on the input trafic or on the output trafic.
 
 ```
 Router(config)# interface <interface>
@@ -95,10 +100,10 @@ then
 
 |         Names     |    IPs   |    Gateways|
 |-------------------|---------|--|
-|Melvin's PC| 172.16.70.35  |  172.16.70.1|
-| Franck's PC| 172.16.70.32 |172.16.70.1|
-| Jim's PC| 192.168.90.36  | 172.16.90.2|
-| Kathy's PC| 192.168.90.38|    172.16.90.2|
+|Cody's PC| 172.16.70.35  |  172.16.70.1|
+|Bly's PC| 172.16.70.32 |172.16.70.1|
+|Yoda's PC| 192.168.90.36  | 172.16.90.2|
+|Windu's PC| 192.168.90.38|    172.16.90.2|
 
 The Router has three interfaces : E0, S0 and E1.
 
@@ -110,7 +115,7 @@ The Router has three interfaces : E0, S0 and E1.
 
 > **Tips** : Make a schema to illustrate
 
-1. Write a standard access list to block Melvin’s PC from sending information to Kathy’s PC ; but will allow all other traffic.
+1. Write a standard access list to block Cody’s PC from sending information to Windu’s PC ; but will allow all other traffic.
 ```
 Router(config)# access-list 11 deny 172.16.70.35
 Router(config)# access-list 11 permit any
@@ -118,7 +123,7 @@ Router(config)# interface e1
 Router(config-if)# ip access-group 11 out
 ```
 
- 2. Write a standard access list to block Jim’s PC from sending information to network 172.16.70.0; but will allow all other traffic from the 192.168.90.0 network and from the 210.30.28.0 network to reach the 172.16.70.0 network. Deny all other traffic.
+ 2. Write a standard access list to block Yoda’s PC from sending information to network 172.16.70.0; but will allow all other traffic from the 192.168.90.0 network and from the 210.30.28.0 network to reach the 172.16.70.0 network. Deny all other traffic.
 
 ```
 Router(config)# access-list 28 deny 192.168.90.36
@@ -133,10 +138,10 @@ Use the E0 to regulate from others interfaces.
 
 |         Names     |    IPs   |    Gateways|
 |-------------------|---------|--|
-|Johnn's PC| 172.16.70.35  |  172.16.70.1|
-| Gail's PC| 172.16.70.32 |172.16.70.1|
-| Mike's PC| 192.168.90.36  | 172.16.90.2|
-| Celeste's PC| 192.168.90.38|    172.16.90.2|
+|Soldier's PC| 172.16.70.35  |  172.16.70.1|
+| Anakin's PC| 172.16.70.32 |172.16.70.1|
+| ObiWan's PC| 192.168.90.36  | 172.16.90.2|
+| Jedi's PC| 192.168.90.38|    172.16.90.2|
 
 The Router has two interfaces : FA0 & F01.
 |Interfaces| Networks|
@@ -144,9 +149,10 @@ The Router has two interfaces : FA0 & F01.
 |FA0|172.16.70.0|
 |FA1|192.168.90.0|
 
-* Write an extended access list to block the 172.16.70.0 network from receiving information from Mike’s computer at 192.168.90.36. Block the lower half of the ip addresses from 192.168.90.0 network from reaching Gail’s computer at 172.16.70.32. Permit all other traffic.
+* Write an extended access list to block the 172.16.70.0 network from receiving information from ObiWan’s computer at 192.168.90.36. Block the lower half of the ip addresses from 192.168.90.0 network from reaching Anakin’s computer at 172.16.70.32. Permit all other traffic.
 
 ->Destinataire est à la fin de l'extended ACL
+
 ```
 Router(config)# access-list 111 deny ip 192.168.90.36 0.0.0.0 172.16.70.0 0.0.0.255
 Router(config)# access-list 111 deny ip 192.168.90.0 0.0.0.127 172.16.70.32 0.0.0.0
@@ -154,6 +160,7 @@ Router(config)# access-list 111 permit ip any any
 Router(config)# interface fa1
 Router(config-if)# ip access-group 111 in
 ```
+
 ### Problem 4
 |         Names  |    IPs   |    Gateways|
 |-------------------|---------|--|
