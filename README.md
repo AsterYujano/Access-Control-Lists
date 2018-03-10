@@ -62,7 +62,7 @@ access-list [access-list-number] [permit/deny] [protocol] [host/source source-wi
 ```
 
 In an extended list, provide the source and the destination. The destination is the last one to be written.
-Put IP in the protocal place acts as list all the different protocols.
+Put IP in the protocol place acts as list all the different protocols.
 
 
 
