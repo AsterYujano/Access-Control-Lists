@@ -1,4 +1,4 @@
-# Access Control lists - My straightforward guide
+# Access Control lists - A straightforward guide
 Have you always been searching for a simple explanation of the Access Control Lists ?
 >~~No, I don't care about it.~~
 
@@ -13,8 +13,10 @@ As a light switch does, an ACL can permit the flow or deny it.
 By default, an ACL blocks the flow.
 
 It is possible to create two kinds of list :
-- Standart
+- Standard
 - Extended
+
+Standard ones are the simple ones while extended are more complex.
 
 ##  Define
 - To create an ACL, make it in two parts :
@@ -22,7 +24,7 @@ It is possible to create two kinds of list :
    - the second one, apply it on an interface.
 
 
-At the definition, give a number to your ACL. Standart and Extented have different number ranges.
+At the definition, give a number to your ACL to name it. Standart and Extented have different number ranges.
 
 |   |Standart ACLs|Extended ACLs|
 |----|-------------|-------------|
@@ -247,16 +249,12 @@ RouterB(config)# line vty 0 4
 RouterB(config-if)# ip access-class 50 in
 ```
 
+> Pay attention to the two lasts lines, they correspond to the telnet protocol.
 
 ### Reverse problem
-```
-RouterB(config)# access-list 112 permit ip 192.18.50.0 0.0.0.255 192.16.20.0 0.0.0.255
-RouterB(config)# access-list 112 deny ip any any
-RouterB(config)# interface e1
-RouterB(config-if)# ip access-group 112 in
-```
+
 ---
 
-
+## Sources
 
 [Source 1](https://www.cisco.com/c/en/us/support/docs/security/ios-firewall/23602-confaccesslists.html#acltypes)
