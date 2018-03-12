@@ -61,6 +61,8 @@ access-list 28 deny host 192.168.90.36
 access-list [access-list-number] [permit/deny] [protocol] [host/source source-wildcard|any] [destination destination-wildcard|any]
 ```
 
+It is possible to add "eq [protocol]" to specify which one to permit/deny.
+
 In an extended list, provide the source and the destination. The destination is the last one to be written.
 Put IP in the protocol place acts as list all the different protocols.
 
@@ -257,6 +259,7 @@ RouterB(config)# access-list 50 permit 192.30.76.155
 RouterB(config)# line vty 0 4
 RouterB(config-if)# ip access-class 50 in
 ```
+> Access-class corresponds to the line command while access-group corresponds to an interface.
 
 > Pay attention to the two lasts lines, they correspond to the telnet protocol.
 
