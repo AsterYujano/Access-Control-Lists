@@ -32,6 +32,8 @@ At the definition, give a number to your ACL to name it. Standart and Extented h
 
 >Don't pay attention to high numbers as [1300->1999] and [2000->2699], it won't be usefull.
 
+Instead of giving a number to name an ACL, you can provide a name.
+
 ### Wildcard
 As a mask does, Wildcards are usefull to identify a network.
 
@@ -62,6 +64,7 @@ access-list [access-list-number] [permit/deny] [protocol] [host/source source-wi
 ```
 
 It is possible to add "eq [protocol]" to specify which one to permit/deny.
+Add [eq www] to the end of the access list will only allowed or denied the HTTP protocol. [eq 80] means the same. Remember, the port 80 is the official one for the FTP -> HTTP.
 
 In an extended list, provide the source and the destination. The destination is the last one to be written.
 Put IP in the protocol place acts as list all the different protocols.
