@@ -64,7 +64,7 @@ access-list [access-list-number] [permit/deny] [protocol] [host/source source-wi
 ```
 
 It is possible to add "eq [protocol]" to specify which one to permit/deny.
-Add [eq www] to the end of the access list will only allowed or denied the HTTP protocol. [eq 80] means the same. Remember, the port 80 is the official one for the FTP -> HTTP.
+Add [eq www] to the end of the access list will only allowed or denied the HTTP protocol. [eq 80] means the same. Remember, the port 80 is the official one for the TCP -> HTTP.
 
 In an extended list, provide the source and the destination. The destination is the last one to be written.
 Put IP in the protocol place acts as list all the different protocols.
@@ -145,8 +145,8 @@ Use the E0 to regulate from others interfaces.
 |-------------------|---------|--|
 |Soldier's PC| 172.16.70.35  |  172.16.70.1|
 | Anakin's PC| 172.16.70.32 |172.16.70.1|
-| ObiWan's PC| 192.168.90.36  | 172.16.90.2|
-| Jedi's PC| 192.168.90.38|    172.16.90.2|
+| ObiWan's PC| 192.168.90.36  | 192.168.90.2|
+| Jedi's PC| 192.168.90.38|    192.168.90.2|
 
 The Router has two interfaces : FA0 & F01.
 
@@ -173,8 +173,8 @@ Router(config-if)# ip access-group 111 in
 |-------------------|---------|--|
 |Cindy's PC| 172.16.70.35  |  172.16.70.1|
 | Ralph's PC| 172.16.70.32 |172.16.70.1|
-| Bob's PC| 192.168.90.36  | 172.16.90.2|
-| Barbra's PC| 192.168.90.38|    172.16.90.2|
+| Bob's PC| 192.168.90.36  | 192.168.90.2|
+| Barbra's PC| 192.168.90.38|   192.168.90.2|
 | Router A| 192.16.20.5|   x|
 | Router B| 192.18.50.10|    x|
 
@@ -220,8 +220,8 @@ S0 and S1 are linked together.
 
 Write an extended access list to deny HTTP traffic intended for web server 192.168.207.27, but will permit all other HTTP traffic to reach the only the 192.168.207.0 network. Deny all other IP traffic to 192.168.207.0 network.
 ```
-RouterB(config)# access-list 112 deny ftp any 192.168.207.27
-RouterB(config)# access-list 112 permit ftp any 192.168.207.0 0.0.0.255
+RouterB(config)# access-list 112 deny tcp any 192.168.207.27 eq 80
+RouterB(config)# access-list 112 permit tcp any 192.168.207.0 0.0.0.255 eq 80
 RouterB(config)# interface e0
 RouterB(config-if)# ip access-group 112 out
 ```
